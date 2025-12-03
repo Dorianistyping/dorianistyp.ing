@@ -90,7 +90,7 @@ const go = document.getElementById("go");
 const TYPE_DELAY = 2;
 const PROMPT_DELAY = 7000;
 
-// --- ASCII LOGO ---
+// ASCII
 const logo = [
 "    ____             _ ____  _____",
 "   / __ \\____  _____(_) __ \\/ ___/",
@@ -100,7 +100,7 @@ const logo = [
 "                                   "
 ];
 
-// --- BIOS LINES ---
+// BIOS STUFF
 const biosLines = [
   "DORiOS Firmware 4.0",
   "-------------------------------------------",
@@ -124,13 +124,13 @@ const biosLines = [
   ""
 ];
 
-// --- FINAL BOOT SEQUENCE (NO system info) ---
+// BOOT
 const bootSequence = [...logo, ...biosLines];
 
 let queue = [...bootSequence];
 let typingBoot = true;
 
-// TYPE LINE
+// TYPE
 function typeLine(line, cb){
   let i = 0;
   function step(){
@@ -146,7 +146,7 @@ function typeLine(line, cb){
   step();
 }
 
-// LINE LOOP
+// LOOP
 function typeLoop(){
   if(queue.length){
     typeLine(queue.shift(), typeLoop);
@@ -157,7 +157,7 @@ function typeLoop(){
 
 typeLoop();
 
-// AFTER BOOT — ONLY AWAITING PASSWORD
+// AWAITING PASSWORD
 setInterval(()=>{
   if(!typingBoot){
     consoleEl.textContent += ">>> AWAITING PASSWORD ...\n";
