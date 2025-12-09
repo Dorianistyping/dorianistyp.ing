@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Audio Only Player</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'w95fa', monospace;
+  }
+
+  #music-player {
+    width: 300px;
+    background-color: var(--light, #e0e0e0);
+    border: 2px solid #fff;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding: 10px;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  #song-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #song-artist {
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  .play {
+    border: 2px solid #fff;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    background-color: var(--light, #e0e0e0);
+    padding: 6px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+    font-family: 'w95fa';
+    font-size: 14px;
+  }
+
+  .play:active,
+  .play:focus {
+    border: 2px solid #000;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    outline: none;
+  }
+
+  /* Hide YouTube video completely */
+  #player {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+</style>
+</head>
+<body>
+
+  <div id="song-title">Click Play</div>
+  <div id="song-artist">&nbsp;</div>
+  <div id="playbutton">
+    <button class="play" onclick="prev()">⏮</button>
+    <button class="play" onclick="toggle()">▶</button>
+    <button class="play" onclick="next()">⏭</button>
+  </div>
+
+
+<div id="player" aria-hidden="true"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+let player;
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    playerVars: {
+      listType: 'playlist',
+      list: 'PL6HSWhn3OZ6FOyvoe-NjNlRB7i7-Vm5xG',
+      controls: 0,
+      autoplay: 0,
+      disablekb: 1
+    },
+    events: {
+      onReady: e => e.target.setVolume(20),
+      onStateChange: updateInfo
+    }
+  });
+}
+
+function toggle() {
+  const state = player.getPlayerState();
+  if (state === YT.PlayerState.PLAYING) player.pauseVideo();
+  else player.playVideo();
+}
+
+function next() { player.nextVideo(); }
+function prev() { player.previousVideo(); }
+
+function updateInfo() {
+  const data = player.getVideoData();
+  if (data && data.title) {
+    document.getElementById("song-title").textContent = data.title;
+    document.getElementById("song-artist").textContent = "Uploaded by " + data.author;
+  }
+}
+</script>
+
+</body>
+</html>
