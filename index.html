@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="indexstyles.css">
+    <script src="https://unpkg.com/webamp@1.4.0/built/webamp.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <title>Dorian's Awesom Website</title> 
+    <link rel="icon" type="image/x-icon" href="images/shutdownn.png">
+    <script src="https://unpkg.com/webamp@1.4.0/built/webamp.bundle.min.js"></script>
+  </head> 
+
+  <body onload="startTime()">
+    <div class="menu">
+      <div class="drop-up"> 
+        <button class="box border" onclick="toggleDropUp()"><B>Start</B></button>
+        <div class="drop-up-content" id="dropUpContent">
+          <a href="#" onclick="openTab(2)"><img src="images/bag.png">Home</a>
+          <a href="#" onclick="openTab(5)"><img src="images/goat.png">Stephen</a>
+          <a href="#" onclick="openTab(7)"><img src="images/books.png">information</a>
+          <a href="#" onclick="openTab(8)"><img src="images/Folder.png">Media</a>
+
+          <div class="drop-divider"> </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <button class="box border" id="tab2" onclick="closeTab(2)">Home</button>
+      <button class="box border" id="tab5" onclick="closeTab(5)" style="display:none">Stephen</button>
+      <button class="box border" id="tab7" onclick="closeTab(7)">Information</button>
+      <button class="box border" id="tab8" onclick="closeTab(8)" style="display:none">Media</button>
+
+      <p id="clock" style="float: right;"></p>
+    </div>
+
+    <div class="icons">
+      <button class="icon" onclick="openTab (7)"><img src="images/books.png"><br>Info</button>
+      <button class="icon" onclick="openTab (8)"><img src="images/Folder.png"><br>Media</button>
+      <button class="icon" onclick="openTab(5)"><img src="images/goat.png"><br>Stephen</button> 
+
+
+    </div>
+
+    <div id="div5" class="hidden-div draggable">
+      <div class="header"><b>Stephen's Wisdom</b>
+        <button class="x-button border" onclick="closeTab(5)">X</button>
+      </div>
+      <div class="content"> 
+      <img src="images/MCgoat.png" width="100" >
+      <div id="quote">Loading quote...</div>
+     <script src="html/stephen.js"></script>
+
+      </div>
+
+    </div>
+
+
+
+    <div id="div4" class="hidden-div draggable">
+      <div class="header"><img src="images\notepad.png"><b>blog</b>
+        <button class="x-button border" onclick="closeTab(4)">X</button>
+      </div>
+      <div class="content">this is under construction!!!</div>
+    </div>
+
+
+
+    <div class="onscreen"></div>
+
+    <div id="div2" class="hidden-div draggable">
+      <div class="header"><img src="images/bag.png" style="height: 20px; width: 20px; padding-top: 2px;"><b>Homepage</b>
+        <button class="x-button border" onclick="closeTab(2)">X</button>
+      </div>
+      <div class="explorer-navigator">
+        <span class="nav-tab"><u>F</u>ile</span> <span class="nav-tab"><u>E</u>dit</span><span class="nav-tab"><u>S</u>earch</span><span class="nav-tab"><u>H</u>elp</span>
+      </div>
+      <span class="nav-search-bar">
+        <div class="explorer-navigator">
+          <span class="back-button border" data-src="html/cover.html" onclick="loadFrame(this)">&#60;</span>
+          <span class="address-text"> Address </span>
+          <span class="nav-search-bar">
+            <span class="search-bar-text">My Documents</span></span>
+        </div>
+        <div class="content">
+          <iframe src="html/cover.html" id="frame2"></iframe>
+        </div>
+        <div class="menulower">
+          <div class="main-option border" data-src="html/cover.html" onclick="loadFrame(this)"><img src="https://i.imgur.com/wxGBOYc.png"><br>homepage</div>
+          <div class="main-option border" data-src="html/aboutme.html" onclick="loadFrame(this)"><img src="https://i.imgur.com/kwjK2yv.png"><br>about me</div>
+          <div class="main-option border" data-src="html/sitemap.html" onclick="loadFrame(this)"><img src="https://i.imgur.com/SAO8QvY.png"><br>sitemap</div>
+        </div>
+    </div>
+
+    <div id="div7" class="hidden-div draggable">
+      <div class="header"><img src="images/books.png"><b>Information</b>
+        <button class="x-button border" onclick="closeTab(7)">X</button>
+      </div>
+      <div class="content">
+          <div class="subtitle" style="margin-bottom: 3px;"><b>site to do list</b></div>  
+        - add a pixel garden page <br>
+        - add a notepad tab with ascii art <br>
+        - add more links to mutuals and sites i like <br>
+        - decrease image sizes <br>
+        - make some changes to improve readability (fix contrast isses in some places) <br>
+        - some sort of music player? maybe at the bottom of this "information" tab <br>
+
+        </div>
+    </div>
+
+    <div id="div8" class="hidden-div draggable">
+      <div class="header"><img src="images/Folder.png"><b>Media</b>
+        <button class="x-button border" onclick="closeTab(8)">X</button>
+      </div>
+      <div class="content">
+      <div class="folder"> <img src="images/crow.png" onclick="openTab(9)"><br>NYC.mp4</a></div>
+        <div class="folder"><a href="https://letterboxd.com/dorian_exe/" target=”_blank”><img src="images/TV.png"><br>Letterboxd</a></div>
+
+        </div>
+    </div>
+
+<div id="div9" class="hidden-div draggable">
+  <div class="header">
+    <img src="images/TV.png">
+    <b>NYC.mp4</b>
+    <button class="x-button border" onclick="closeTab(9)">X</button>
+  </div>
+  <div class="content">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9RQM9h-b40s?si=oPzoEKposrQBwCE0&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+    <script src="indexscript.js"></script>
+
+  
+  </body>
+
+</html>
