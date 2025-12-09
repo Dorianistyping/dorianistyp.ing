@@ -4,10 +4,13 @@
 } 
 
 @font-face {
-  font-family: 'utonium';
-  src: url(OldEnglishGothicPixelRegular-ow2Bo.ttf);
+  font-family: 'loser';
+  src: url(Loser.ttf);
 }
-
+@font-face {
+  font-family: 'jetbrains';
+  src: url(JetBrains.ttf);
+}
 @font-face {
   font-family: '04B_30';
   src: url(PixelOperator.ttf);

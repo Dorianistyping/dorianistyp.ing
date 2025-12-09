@@ -422,19 +422,14 @@ img {
 
 
 /* terminal div4 */
-#div4 {
-  display: none;
-  width: 400px;
-  height: 300px;
-  padding-bottom: 2px;
-}
 
 
-/* chatbox div5 */
+
+/* Stephen div5 */
 #div5 {
   display: none;
   width: 400px;
-  height: 200px;
+  height: 220px;
   padding-bottom: 2px;
   left: 1225px;
   bottom: 25%;
@@ -443,11 +438,12 @@ img {
 }
 
 #div5 .content {
+  font-family: jetbrains;
   background-color: var(--contrastbg);
   border: 2px solid var(--darkest);
   border-right: 2px solid var(--lightest);
   border-bottom: 2px solid var(--lightest);
-  height:75%;
+  height:77%;
   width: 95%;
   margin-left: 2px;
   margin-top: 1px;
@@ -507,6 +503,7 @@ img {
 
 
 #div7 .content {
+    font-family: jetbrains;
   background-color: var(--contrastbg);
   border: 2px solid var(--darkest);
   border-right: 2px solid var(--lightest);
@@ -571,6 +568,57 @@ img {
   color: var(--darkest);
   text-decoration: none;
 }
+
+#div10 {
+  display: none;
+  width: 400px;
+  height: 300px;
+  padding-bottom: 2px;
+  left: 1225px;
+  bottom: 52%;
+  font-size: 14px;
+  line-height: 13px;
+}
+
+#div10 .content {
+    font-family: jetbrains;
+  background-color: var(--contrastbg);
+  border: 2px solid var(--darkest);
+  border-right: 2px solid var(--lightest);
+  border-bottom: 2px solid var(--lightest);
+  height:83%;
+  width: 95%;
+  margin-left: 2px;
+  margin-top: 1px;
+}
+#div11 {
+  display: none;
+  width: 300px;
+  height: 150px;
+  padding-bottom: 2px;
+  left: 385px;
+  bottom: 7%;
+  font-size: 14px;
+  line-height: 13px;
+}
+
+#div11 .content {
+    font-family: jetbrains;
+  background-color: var(--contrastbg);
+  border: 2px solid var(--darkest);
+  border-right: 2px solid var(--lightest);
+  border-bottom: 2px solid var(--lightest);
+  height:65%;
+  width: 93%;
+  margin-left: 2px;
+  margin-top: 1px;
+}
+
+
+
+
+
+
 
 
 /* corner image styling */
@@ -668,4 +716,3 @@ img {
     top: 73px;
   }
 }
-
