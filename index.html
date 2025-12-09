@@ -20,6 +20,8 @@
           <a href="#" onclick="openTab(5)"><img src="images/goat.png">Stephen</a>
           <a href="#" onclick="openTab(7)"><img src="images/books.png">information</a>
           <a href="#" onclick="openTab(8)"><img src="images/Folder.png">Media</a>
+          <a href="#" onclick="openTab(10)"><img src="images/Typewriter.png">Blog</a>
+          <a href="#" onclick="openTab(11)"><img src="images/radio.png">Radio</a>
 
           <div class="drop-divider"> </div>
         </div>
@@ -29,6 +31,8 @@
       <button class="box border" id="tab5" onclick="closeTab(5)" style="display:none">Stephen</button>
       <button class="box border" id="tab7" onclick="closeTab(7)">Information</button>
       <button class="box border" id="tab8" onclick="closeTab(8)" style="display:none">Media</button>
+      <button class="box border" id="tab10" onclick="closeTab(10)" style="display:none">Blog</button>
+      <button class="box border" id="tab11" onclick="closeTab(11)" style="display:none">Radio</button>
 
       <p id="clock" style="float: right;"></p>
     </div>
@@ -37,6 +41,8 @@
       <button class="icon" onclick="openTab (7)"><img src="images/books.png"><br>Info</button>
       <button class="icon" onclick="openTab (8)"><img src="images/Folder.png"><br>Media</button>
       <button class="icon" onclick="openTab(5)"><img src="images/goat.png"><br>Stephen</button> 
+      <button class="icon" onclick="openTab(10)"><img src="images/Typewriter.png"><br>Blog</button> 
+      <button class="icon" onclick="openTab(11)"><img src="images/radio.png"><br>Radio</button> 
 
 
     </div>
@@ -122,10 +128,34 @@
   <div class="content">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9RQM9h-b40s?si=oPzoEKposrQBwCE0&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
+</div>
 
-    <script src="indexscript.js"></script>
 
-  
+    <div id="div10" class="hidden-div draggable">
+      <div class="header"><b>Dorian's Blog</b>
+        <button class="x-button border" onclick="closeTab(10)">X</button>
+      </div>
+        <div class="content">
+          <iframe src="https://nikki.top/api.php?id=179&limit=5" style="top:0; left:0; width:100%; height:100%; border:none;">
+          </iframe> 
+       </div>
+    </div>
+ 
+
+
+    <div id="div11" class="hidden-div draggable">
+      <div class="header"><b>Radio</b>
+        <button class="x-button border" onclick="closeTab(11)">X</button>
+      </div>
+        <div class="content">
+          <iframe src="html/radio.html" style="top:0; left:0; width:100%; height:100%; border:none;"></iframe>
+          </iframe> 
+       </div>
+    </div>
+
+
+      <script src="indexscript.js"></script>
+
   </body>
 
 </html>
