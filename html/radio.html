@@ -215,7 +215,7 @@
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
 let player;
-let currentPlaylist = '';
+let currentPlaylist = 'PL6HSWhn3OZ6FOyvoe-NjNlRB7i7-Vm5xG'; // default playlist
 
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
@@ -227,34 +227,24 @@ function onYouTubeIframeAPIReady() {
       disablekb: 1
     },
     events: {
-      onReady: e => e.target.setVolume(20),
+      onReady: e => {
+        e.target.setVolume(20);
+        e.target.playVideo(); // start first song so next/prev work
+      },
       onStateChange: updateInfo
     }
   });
 }
 
-function togglePlaylistSelector() {
-  const selector = document.getElementById('playlistSelector');
-  const controls = document.getElementById('playerControls');
-  const album = document.getElementById('album-art');
-  const menu = document.getElementById('menuBtn');
-  const title = document.getElementById('song-title');
-  const artist = document.getElementById('song-artist');
+function next() {
+  if(player && typeof player.nextVideo === 'function') {
+    player.nextVideo();
+  }
+}
 
-  if (selector.style.display === 'flex') {
-    selector.style.display = 'none';
-    controls.style.display = 'grid';
-    album.style.display = 'flex';
-    menu.style.display = 'flex';
-    title.style.display = player.getPlayerState() === YT.PlayerState.PLAYING ? 'block' : 'none';
-    artist.style.display = player.getPlayerState() === YT.PlayerState.PLAYING ? 'block' : 'none';
-  } else {
-    selector.style.display = 'flex';
-    controls.style.display = 'none';
-    album.style.display = 'none';
-    menu.style.display = 'none';
-    title.style.display = 'none';
-    artist.style.display = 'none';
+function prev() {
+  if(player && typeof player.previousVideo === 'function') {
+    player.previousVideo();
   }
 }
 
@@ -265,7 +255,7 @@ function selectPlaylist(listId) {
   document.getElementById('album-art').style.display = 'flex';
   document.getElementById('menuBtn').style.display = 'flex';
   player.loadPlaylist({ list: currentPlaylist });
-  player.playVideo();
+  player.playVideo(); // start playing immediately
 }
 
 function toggle() {
