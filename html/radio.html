@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: center;
     font-family: 'w95fa', monospace;
-    overflow: hidden; /* prevent body scroll */
+    overflow: hidden;
   }
 
   #music-player {
@@ -68,22 +68,22 @@
     cursor: pointer;
   }
 
-  #song-title {
+  #song-title, #song-artist {
     display: none;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 8px;
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
 
+  #song-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+
   #song-artist {
-    display: none;
     font-size: 12px;
     margin-top: 2px;
     color: #333;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
   }
 
   .play {
@@ -130,20 +130,20 @@
     display: none;
     flex-direction: column;
     width: 100%;
-    max-height: 80vh;   /* allow full scroll */
+    max-height: 80vh;
     overflow-y: auto;
     background: #e0e0e0;
     border: 2px solid #fff;
     border-right: 2px solid #000;
     border-bottom: 2px solid #000;
-    padding: 8px 8px 32px 8px;  /* extra bottom padding */
+    padding: 8px 8px 32px 8px; /* extra bottom padding */
     box-sizing: border-box;
     align-items: center;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
   }
 
   .playlist-selector::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
   }
 
   .playlist-header {
@@ -157,7 +157,6 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     justify-items: center;
-    margin-bottom: 0;
   }
 
   .playlist-grid img {
@@ -184,10 +183,7 @@
 
 <div id="music-player">
   <div class="player-top" id="playerArea">
-    <div id="album-art" class="placeholder">
-      <img id="album-img" src="" alt="">
-    </div>
-
+    <div id="album-art" class="placeholder">Album</div>
     <div class="info-area">
       <button class="play playlist-btn" id="menuBtn" onclick="togglePlaylistSelector()" title="Pick Playlist">☰</button>
       <div id="song-title">Click Play</div>
@@ -204,12 +200,12 @@
   <div class="playlist-selector" id="playlistSelector">
     <div class="playlist-header">Pick a playlist!</div>
     <div class="playlist-grid">
-      <img data-videoid="PL6HSWhn3OZ6FOyvoe" alt="Playlist 1" onclick="selectPlaylist('PL6HSWhn3OZ6FOyvoe-NjNlRB7i7-Vm5xG', this)">
-      <img data-videoid="PL6HSWhn3OZ6FOyvoe" alt="Playlist 2" onclick="selectPlaylist('PL6HSWhn3OZ6FOyvoe', this)">
-      <img data-videoid="V-PL6HSWhn3OZ6FOyvoe" alt="Playlist 3" onclick="selectPlaylist('PL6HSWhn3OZ6FOyvoe', this)">
-      <img data-videoid="PL6HSWhn3OZ6FOyvoe" alt="Playlist 4" onclick="selectPlaylist('PL6HSWhn3OZ6FOyvoe', this)">
-      <img data-videoid="PL6HSWhn3OZ6FOyvoe" alt="Playlist 5" onclick="selectPlaylist('PL6HSWhn3OZ6FOyvoe', this)">
-      <img data-videoid="PL6HSWhn3OZ6FOyvoe" alt="Playlist 6" onclick="selectPlaylist('PL6HSWhn3OZ6FOyvoe', this)">
+      <img src="cd1.jpg" alt="CD 1" onclick="selectPlaylist('PL6HSWhn3OZ6FOyvoe-NjNlRB7i7-Vm5xG')">
+      <img src="cd2.jpg" alt="CD 2" onclick="selectPlaylist('PLXXXXXXXXXXXX')">
+      <img src="cd3.jpg" alt="CD 3" onclick="selectPlaylist('PLYYYYYYYYYYYY')">
+      <img src="cd4.jpg" alt="CD 4" onclick="selectPlaylist('PLZZZZZZZZZZZZ')">
+      <img src="cd5.jpg" alt="CD 5" onclick="selectPlaylist('PLAAAAAAAAAAAA')">
+      <img src="cd6.jpg" alt="CD 6" onclick="selectPlaylist('PLBBBBBBBBBBBB')">
     </div>
   </div>
 </div>
@@ -221,7 +217,6 @@
 let player;
 let currentPlaylist = '';
 
-// Load YouTube player hidden
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     playerVars: {
@@ -238,31 +233,32 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-// Dynamically set playlist images from first video ID
-document.querySelectorAll('.playlist-grid img').forEach(img => {
-  const videoId = img.dataset.videoid;
-  img.src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-});
-
 function togglePlaylistSelector() {
   const selector = document.getElementById('playlistSelector');
   const controls = document.getElementById('playerControls');
   const album = document.getElementById('album-art');
   const menu = document.getElementById('menuBtn');
+  const title = document.getElementById('song-title');
+  const artist = document.getElementById('song-artist');
+
   if (selector.style.display === 'flex') {
     selector.style.display = 'none';
     controls.style.display = 'grid';
     album.style.display = 'flex';
     menu.style.display = 'flex';
+    title.style.display = player.getPlayerState() === YT.PlayerState.PLAYING ? 'block' : 'none';
+    artist.style.display = player.getPlayerState() === YT.PlayerState.PLAYING ? 'block' : 'none';
   } else {
     selector.style.display = 'flex';
     controls.style.display = 'none';
     album.style.display = 'none';
     menu.style.display = 'none';
+    title.style.display = 'none';
+    artist.style.display = 'none';
   }
 }
 
-function selectPlaylist(listId, imgElement) {
+function selectPlaylist(listId) {
   currentPlaylist = listId;
   document.getElementById('playlistSelector').style.display = 'none';
   document.getElementById('playerControls').style.display = 'grid';
@@ -270,10 +266,6 @@ function selectPlaylist(listId, imgElement) {
   document.getElementById('menuBtn').style.display = 'flex';
   player.loadPlaylist({ list: currentPlaylist });
   player.playVideo();
-
-  // Update album art to first video's thumbnail
-  const firstVideoId = imgElement.dataset.videoid;
-  document.getElementById('album-img').src = `https://i.ytimg.com/vi/${firstVideoId}/hqdefault.jpg`;
 }
 
 function toggle() {
@@ -285,7 +277,7 @@ function toggle() {
 function next() { player.nextVideo(); }
 function prev() { player.previousVideo(); }
 
-function updateInfo() {
+function updateInfo(e) {
   const state = player.getPlayerState();
   const titleEl = document.getElementById('song-title');
   const artistEl = document.getElementById('song-artist');
@@ -296,8 +288,10 @@ function updateInfo() {
     if (data && data.video_id) {
       titleEl.textContent = data.title;
       artistEl.textContent = 'Uploaded by ' + data.author;
-      titleEl.style.display = 'block';
-      artistEl.style.display = 'block';
+      if(document.getElementById('playlistSelector').style.display !== 'flex') {
+        titleEl.style.display = 'block';
+        artistEl.style.display = 'block';
+      }
       playBtn.classList.add('is-playing');
     }
   } else {
