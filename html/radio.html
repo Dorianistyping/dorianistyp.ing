@@ -141,7 +141,7 @@ body {
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
 let player;
-let currentPlaylist = ''; // empty initially
+let currentPlaylist = 'PL6HSWhn3OZ6FOyvoe-NjNlRB7i7-Vm5xG'; // your playlist
 
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
@@ -160,18 +160,17 @@ function onYouTubeIframeAPIReady() {
 }
 
 function toggle() {
-  if (!currentPlaylist) return;
   const state = player.getPlayerState();
   if (state === YT.PlayerState.PLAYING) player.pauseVideo();
   else player.playVideo();
 }
 
 function next() {
-  if (currentPlaylist && player && typeof player.nextVideo === 'function') player.nextVideo();
+  if (player && typeof player.nextVideo === 'function') player.nextVideo();
 }
 
 function prev() {
-  if (currentPlaylist && player && typeof player.previousVideo === 'function') player.previousVideo();
+  if (player && typeof player.previousVideo === 'function') player.previousVideo();
 }
 
 function updateInfo() {
