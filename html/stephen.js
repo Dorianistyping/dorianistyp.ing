@@ -27,5 +27,4 @@
       return quotes[index];
     }
 
-    // Show a random quote immediately
     document.getElementById("quote").textContent = getRandomQuote();
